@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Урок 4 - Домашнє завдання</title>
+	<style>
+		*,
+		*::before,
+		*::after {
+			box-sizing: border-box;
+			margin: 0;
+			padding: 0;
+		}
+
+		li {
+			list-style: none;
+		}
+
+		img {
+			vertical-align: middle;
+			max-width: 100%;
+		}
+
+		html,
+		body {
+			height: 100%;
+		}
+
+		:root {
+			color-scheme: dark light;
+		}
+
+		body {
+			font-family: system-ui, sans-serif;
+			background-color: light-dark(#cacbd0, #0f1117);
+			color: light-dark(#0f1117, #e2e8f0);
+		}
+
+		.wrapper {
+			display: flex;
+			flex-direction: column;
+			overflow: clip;
+			min-height: 100%;
+			max-width: 62.5rem;
+			padding-inline: 0.9375rem;
+			margin-inline: auto;
+
+			&>*:not(:last-child) {
+				margin-bottom: 2rem;
+			}
+		}
+
+		.main-content {
+			flex-grow: 1;
+			display: grid;
+			row-gap: 1rem;
+		}
+
+		h1 {
+			font-size: 1.5rem;
+			text-transform: uppercase;
+			color: light-dark(#102f5e, #a78bfa);
+		}
+
+		.header,
+		.footer {
+			padding: 1rem 0;
+			text-align: center;
+			border-block: 0.0625rem solid light-dark(#2d2f3e, #cacbd0);
+			transition: background-color 0.3s;
+			background-color: light-dark(#8b9bf3, #070f45);
+		}
+
+		.header {
+			position: sticky;
+			top: 0;
+			z-index: 50;
+		}
+
+		.task {
+			background-color: light-dark(#a9acbd, #1a1c2b);
+			border: 0.0625rem solid light-dark(#2d2f3e, #cacbd0);
+			padding: 1rem;
+			display: grid;
+			row-gap: 1rem;
+		}
+
+		.task h2 {
+			font-size: 1rem;
+			text-transform: uppercase;
+			color: light-dark(#212934, #94a3b8);
+		}
+
+		.task p {
+			font-size: 0.9rem;
+			color: light-dark(#243c3f, #9fc9ca);
+		}
+
+		.button {
+			width: fit-content;
+			background-color: light-dark(#b09cf2, #1e1b4b);
+			color: light-dark(#0f1117, #b3becc);
+			padding: 0.8rem 1rem;
+			cursor: pointer;
+			border: 0.0625rem solid light-dark(#2d2f3e, #cacbd0);
+			transition: background-color 0.3s;
+		}
+
+		.button:hover {
+			background-color: light-dark(#8d82b0, #102158);
+		}
+
+		.items-wrap {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 1rem;
+		}
+
+		.items-wrap .item {
+			background-color: light-dark(#9eabf7, #1a1c2b);
+			border: 0.0625rem solid light-dark(#3d4058, #cacbd0);
+			padding: 0.5rem 1rem;
+			font-size: 0.9rem;
+			color: light-dark(#131a25, #cacbd0);
+			cursor: pointer;
+			user-select: none;
+			transition: background-color 0.3s;
+		}
+
+		.items-wrap .item.active {
+			background-color: light-dark(#908f9a, #1e1b4b);
+		}
+
+		.card {
+			background-color: light-dark(#9eabf7, #1a1c2b);
+			border: 0.0625rem solid light-dark(#3d4058, #cacbd0);
+			padding: 1.5rem;
+			opacity: 0;
+			transition: opacity 0.5s ease;
+
+			&.loaded {
+				opacity: 1;
+			}
+		}
+
+		.counter-item {
+			background-color: light-dark(#9eabf7, #1e1b4b);
+			border: 0.0625rem solid light-dark(#3d4058, #a78bfa);
+			padding: 2rem;
+			text-align: center;
+			font-size: 3rem;
+			font-weight: 700;
+			color: light-dark(#102f5e, #a78bfa);
+			min-height: 7.5rem;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+
+		.text p {
+			font-size: 1.5rem;
+			line-height: 1.5;
+			color: light-dark(#3a3f4d, #64748b);
+
+			&:not(:last-child) {
+				margin-bottom: 1rem;
+			}
+		}
+	</style>
+</head>
+
+<body>
+	<div class="wrapper">
+
+		<header class="header">
+			<h1>Урок 4 - Події</h1>
+		</header>
+
+		<main class="main-content">
+			<div class="task">
+				<h2>Задача №1</h2>
+				<p>Клікніть на елемент і він має змінити колір фону, при повторному кліку - повернути початковий.</p>
+				<ul class="items-wrap">
+					<li class="item">Елемент 1</li>
+					<li class="item">Елемент 2</li>
+					<li class="item">Елемент 3</li>
+				</ul>
+			</div>
+			<div class="task">
+				<h2>Задача №2</h2>
+				<p>Елемент .card спочатку прозорий. При кліку на кнопку нижче він має стати видимим.</p>
+				<button class="button show-card-btn">Показати картку</button>
+				<div class="card">Елемент .card</div>
+			</div>
+			<div class="task">
+				<h2>Задача №3</h2>
+				<p>Наведіть курсор на header вгорі сторінки і колір фону footer внизу має змінитись. Приберіть курсор і колір фону має повернутись в початковий.</p>
+			</div>
+			<div class="task">
+				<h2>Задача №4</h2>
+				<p>Прокрутіть вниз і коли лічильник з'явиться у в'юпорті, він має почати рахувати від 1 до data-max з затримкою data-delay.</p>
+				<div class="text">
+					<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo beatae eveniet hic. Labore quis laudantium, similique officia impedit esse, consequatur voluptate possimus dolor obcaecati repellat illo animi. Quos, aliquid ut.</p>
+					<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo beatae eveniet hic. Labore quis laudantium, similique officia impedit esse, consequatur voluptate possimus dolor obcaecati repellat illo animi. Quos, aliquid ut.</p>
+					<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo beatae eveniet hic. Labore quis laudantium, similique officia impedit esse, consequatur voluptate possimus dolor obcaecati repellat illo animi. Quos, aliquid ut.</p>
+					<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo beatae eveniet hic. Labore quis laudantium, similique officia impedit esse, consequatur voluptate possimus dolor obcaecati repellat illo animi. Quos, aliquid ut.</p>
+					<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo beatae eveniet hic. Labore quis laudantium, similique officia impedit esse, consequatur voluptate possimus dolor obcaecati repellat illo animi. Quos, aliquid ut.</p>
+					<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo beatae eveniet hic. Labore quis laudantium, similique officia impedit esse, consequatur voluptate possimus dolor obcaecati repellat illo animi. Quos, aliquid ut.</p>
+					<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo beatae eveniet hic. Labore quis laudantium, similique officia impedit esse, consequatur voluptate possimus dolor obcaecati repellat illo animi. Quos, aliquid ut.</p>
+				</div>
+				<div class="counter-item" data-role="counter" data-delay="1000" data-max="20"></div>
+			</div>
+		</main>
+		<footer class="footer"> FLS © 2026 </footer>
+	</div>
+	<script type="module">
+		import { task1, task2, task3, task4 } from './solution/solution.js'
+
+		task1()
+		task2()
+		task3()
+		task4()
+	</script>
+</body>
+
+</html>
