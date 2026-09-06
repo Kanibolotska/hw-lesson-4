@@ -8,6 +8,12 @@
 // а при повторному кліку - прибирати цей клас.
 
 function task1() {
+	const items = document.querySelectorAll('.item');
+	items.forEach(item => {
+		item.addEventListener('click', () => {
+			item.classList.toggle('active');
+		});
+	});
 	// ваш код тут
 
 }
@@ -20,10 +26,14 @@ function task1() {
 // (який прибирає прозорість - opacity: 1).
 
 function task2() {
-	// ваш код тут
-
+	const card = document.querySelector('.card');
+	const button = document.querySelector('.show-card-btn');
+	if (card && button) {
+		button.addEventListener('click', () => {
+			card.classList.add('loaded');
+		});
+	}
 }
-
 
 
 // Задача №3
@@ -32,6 +42,16 @@ function task2() {
 // При виході курсору з header треба повернути початковий фон footer.
 
 function task3() {
+	const header = document.querySelector('header');
+	const footer = document.querySelector('footer');
+	if (header && footer) {
+		header.addEventListener('mouseenter', () => {
+			footer.style.backgroundColor = '#000';
+		});
+		header.addEventListener('mouseleave', () => {
+			footer.style.backgroundColor = '';
+		});
+	}
 	// ваш код тут
 
 }
@@ -48,10 +68,35 @@ function task3() {
 // Інтервал не повинен запускатися повторно при повторному появленні елемента на екрані.
 
 function task4() {
-	// ваш код тут
+	const counterItem = document.querySelector('.counter-item');
 
+	if (!counterItem) return;
+
+	const delay = parseInt(counterItem.dataset.delay, 10) || 1000;
+	const max = parseInt(counterItem.dataset.max, 10) || 20;
+
+	const observer = new IntersectionObserver((entries, obs) => {
+		entries.forEach(entry => {
+			if (entry.isIntersecting) {
+				obs?.unobserve(entry.target);
+
+				let count = 0;
+				counterItem.textContent = count;
+
+				const timer = setInterval(() => {
+					count += 1;
+					counterItem.textContent = count;
+
+					if (count >= max) {
+						clearInterval(timer);
+					}
+				}, delay);
+			}
+		});
+	});
+
+	observer.observe(counterItem);
 }
-
 
 // Не чіпати - потрібно і для тестів, і для браузера
 if (typeof module !== 'undefined') module.exports = { task1, task2, task3, task4 };
